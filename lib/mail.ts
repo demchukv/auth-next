@@ -1,5 +1,14 @@
 import { sendEmail } from "@/lib/sendEmail";
 
+export const sendTwoFactorEmail = async (email: string, token: string) => {
+  const twoFactorEmailData = {
+    to: email,
+    subject: "Two factor authentication",
+    html: `<div style="font-size:16px;"><p>Your 2FA code: ${token}</p></div>`,
+  };
+  await sendEmail(twoFactorEmailData);
+};
+
 export const sendPasswordResetEmail = async (email: string, token: string) => {
   const resetLink = `${process.env.BASE_URL}/auth/new-password?token=${token}`;
   const resetEmailData = {
