@@ -1,24 +1,21 @@
-// import { Resend } from "resend";
 import { sendEmail } from "@/lib/sendEmail";
 
-// const resend = new Resend(process.env.RESEND_API_KEY);
+export const sendPasswordResetEmail = async (email: string, token: string) => {
+  const resetLink = `${process.env.BASE_URL}/auth/new-password?token=${token}`;
+  const resetEmailData = {
+    to: email,
+    subject: "Reset your password",
+    html: `<div style="font-size:16px;"><p><a href="${resetLink}">Click here to reset your password</a></p></div>`,
+  };
+  await sendEmail(resetEmailData);
+};
 
 export const sendVerificationEmail = async (email: string, token: string) => {
   const confirmLink = `${process.env.BASE_URL}/auth/new-verification?token=${token}`;
   const verifyEmailData = {
     to: email,
     subject: "Verify email",
-    html: `<a href="${confirmLink}">Click here to verify your email</a>`,
+    html: `<div style="font-size:16px;"><p><a href="${confirmLink}">Click here to verify your email</a></p></div>`,
   };
-  const res = await sendEmail(verifyEmailData);
-  console.log(res);
+  await sendEmail(verifyEmailData);
 };
-
-/*
-    const verifyEmailData = {
-      to: email,
-      subject: 'Verify email',
-      html: `<h1>Please verify your email</h1><p><a target="_blank" href="${process.env.BASE_URI}/api/auth/verify/${verificationToken}">Click verify email</a></p>`,
-    };
-
-    */
