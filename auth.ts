@@ -34,7 +34,7 @@ export const {
         return true;
       }
 
-      const existingUser = await getUserById(user.id);
+      const existingUser = await getUserById(user.id as string);
 
       // Prevent signing in with an unverified email
       if (!existingUser?.emailVerified) {
@@ -69,6 +69,7 @@ export const {
         session.user.email = token.email as string;
         session.user.isOauth = token.isOauth as boolean;
       }
+
       return session;
     },
     async jwt({ token }) {

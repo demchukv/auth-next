@@ -1,6 +1,6 @@
 import NewVerificationForm from "@/components/auth/new-verification-forn";
 
-export const NewVerificationPage = () => {
+const NewVerificationPage = () => {
   return <NewVerificationForm />;
 };
 

@@ -69,6 +69,7 @@ const SettingsPage = () => {
         });
     });
   };
+
   return (
     <Card className="w-[600px]">
       <CardHeader>
